@@ -24,6 +24,7 @@ const Login = () => {
       Cookies.set("access-token", response.data.token);
       navigate("/dashboard");
     } catch (err) {
+      console.log(err);
       messageApi.error(`${err.response.data.message}`, 2);
     }
   };
