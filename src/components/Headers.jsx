@@ -1,11 +1,10 @@
-import { Avatar, Button, Col, ConfigProvider, Drawer, Grid, List, Menu, Popover, Row, Tag, message } from "antd";
+import { Avatar, Button, Col, ConfigProvider, Drawer, Grid, Menu, Popover, Row, Tag, message } from "antd";
 import { Layout } from "antd";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { AiOutlineBell, AiOutlineDashboard, AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineDashboard, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsPeople } from "react-icons/bs";
 import { FaBars, FaUser } from "react-icons/fa";
-import { IoNotificationsCircle } from "react-icons/io5";
 import { LiaPeopleCarrySolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import PosandApi from "../api/PosandApi";
@@ -15,7 +14,6 @@ const { useBreakpoint } = Grid;
 
 const Headers = () => {
   const { xs, sm, md } = useBreakpoint();
-  const [openNotif, setOpenNotif] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const messageApi = message;
@@ -53,11 +51,6 @@ const Headers = () => {
           </Col>
           {sm && (
             <Col xs={{ span: 2 }} sm={{ span: 2 }} md={{ span: 2 }} lg={{ span: 1 }} xl={{ span: 1 }} style={{ display: "flex" }}>
-              <IoNotificationsCircle size={32} onClick={() => setOpenNotif(true)} style={{ cursor: "pointer" }} />
-            </Col>
-          )}
-          {sm && (
-            <Col xs={{ span: 2 }} sm={{ span: 2 }} md={{ span: 2 }} lg={{ span: 1 }} xl={{ span: 1 }} style={{ display: "flex" }}>
               <Popover
                 title="Profile"
                 content={<Button onClick={logOut}>Logout</Button>}
@@ -79,14 +72,6 @@ const Headers = () => {
             </Col>
           )}
         </Row>
-
-        <Drawer title="Notifications" onClose={() => setOpenNotif(false)} open={openNotif} placement="right" styles={{ header: { width: "100%" }, body: { width: "100%" } }}>
-          <List>
-            <List.Item>
-              <List.Item.Meta title="Pesanan" description="1 Pesanan Ditambahkan" />
-            </List.Item>
-          </List>
-        </Drawer>
       </Header>
 
       <ConfigProvider
@@ -112,16 +97,11 @@ const Headers = () => {
             <Link to="/pelanggan">
               <Menu.Item icon={<LiaPeopleCarrySolid size={16} />}>Karyawan</Menu.Item>
             </Link>
+
             {!sm && (
-              <Link to="/notif">
-                <Menu.Item icon={<AiOutlineBell size={16} />}>Notifikasi</Menu.Item>
-              </Link>
-            )}
-            {!sm && (
-              <Link to="/profile">
-                {" "}
-                <Menu.Item icon={<AiOutlineUser size={16} />}>Profile</Menu.Item>
-              </Link>
+              <Menu.Item>
+                <Button onClick={logOut}>Logout</Button>
+              </Menu.Item>
             )}
           </Menu>
         </Drawer>
