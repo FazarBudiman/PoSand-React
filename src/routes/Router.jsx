@@ -7,6 +7,7 @@ import Karyawan from "../pages/Karyawan";
 import Cookies from "js-cookie";
 
 const Router = () => {
+  // eslint-disable-next-line react/prop-types
   const ProtectedRoute = ({ element, ...rest }) => {
     const isAuthenticated = Cookies.get("access-token");
 

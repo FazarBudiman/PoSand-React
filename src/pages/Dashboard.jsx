@@ -9,6 +9,7 @@ import Siders from "../components/Siders";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import PosandApi from "../api/PosandApi";
+import Title from "antd/es/typography/Title";
 
 const Dashboard = () => {
   const [dashboardCount, setdashboardCount] = useState([]);
@@ -89,6 +90,7 @@ const Dashboard = () => {
               </Row>
               <Row style={{ marginTop: 50 }} justify={"center"}>
                 <Col span={6}>
+                  <Title level={4}>Karyawan Aktif</Title>
                   <Table
                     dataSource={dataKaryawanAktif}
                     columns={[
